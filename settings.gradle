@@ -1,0 +1,1 @@
+include ':app', ':huisuo', ':lizizhuangtai', ':alljavalibs', ':allandroidexamples', ':libhandletest', ':libdesignpatterns', ':libGoogle', ':libGoogle', ':libTest'

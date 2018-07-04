@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.test.huisuo"
+        minSdkVersion 16
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release.initWith(debug)
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    task makeApp(type: Copy) {
+//        dependsOn 'assembleRelease'
+//        from('build/outputs/apk/huisuo-release.apk')
+//        into('build/libs/')
+////        include('classes.jar')
+//        rename ('.*?apk', 'test01.app')
+//    }
+
+    task makeApp(type: Copy) {
+        dependsOn 'assembleRelease'
+        from('build/outputs/apk/huisuo-release.apk')
+        into('build/libs/')
+//        include('classes.jar')
+        rename ('.*?apk', 'test01.app')
+    }
+
+}
+
+/*def sdk = 'sdk'
+task installPlugin(group:sdk){
+    dependsOn assembleDebug
+    doLast{
+        String cmd="adb install -r "+this.buildDir.absolutePath+"/outputs/Apk/"+this.name+"-debug.apk"
+        println cmd
+        Process procces=Runtime.getRuntime().exec(cmd)
+        procces.getInputStream()
+        InputStream result=procces.getInputStream()
+        byte[] buf=new byte[1024]
+        int read=0
+        while(read!=-1){
+            read=result.read(buf)
+            if(read>0)
+                println new String(buf,0,read)
+        }
+        result.close()
+    }
+}*/
+//repositories{
+//    flatDir {
+//        dirs 'libs'
+//    }
+//}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+//    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.lazymc:bamboo:1.0.4'
+//    compile 'com.tencent.bugly:crashreport:latest.release'  //其中latest.release指代最新版本号，
+    compile 'com.appsflyer:af-android-sdk:4+@aar'
+    compile 'com.appsflyer:af-android-sdk:4.7.4'
+    compile 'com.android.installreferrer:installreferrer:1.0'
+    compile 'com.google.android.gms:play-services-ads:10.0.1'
+}

@@ -1,0 +1,12 @@
+def buildscriptDir = new File(rootProject.projectDir, 'buildscript/scripts')
+
+if (buildscriptDir.exists())
+{
+    def files = buildscriptDir.listFiles()
+    if (files != null && files.size() > 0)
+    {
+        println "1111"
+        for (File file : files)
+            apply from: file.path
+    }
+}

@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile files('libs/play-store-api-v1.0.4.2018-06-28-20180628.040644-2.jar')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

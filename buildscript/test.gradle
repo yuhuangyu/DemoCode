@@ -1,0 +1,6 @@
+
+
+allprojects {
+    println "0000"
+    it.apply from:(rootProject.projectDir.path+'/buildscript/test1.gradle')
+}

@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+
+    defaultConfig {
+        applicationId "com.test.allandroidexamples"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release.initWith(debug)
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // gradle 使用保存
+    //    preBuild.dependsOn ':testlibrary:makeJar'
+
+    /*
+    task testPreBuild (type: Copy){
+        dependsOn ':testlibrary:makeJar'
+        from '../testlibrary/build/libs/'
+        into 'libs'
+    }
+    preBuild.dependsOn testPreBuild
+
+    task testPreBuild2 (type: Copy){
+        dependsOn ':test01:makeApp'
+        from '../test01/build/libs/'
+        into 'src/main/assets'
+    }
+    preBuild.dependsOn testPreBuild2*/
+
+    // 打包后应用名称
+//    applicationVariants.all { variant ->
+//        variant.outputs.each { output ->
+//            def outputFile = output.outputFile
+//            def fileName
+//            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                fileName = "test01"
+//                output.outputFile = new File(outputPathName+"assets/" + fileName)
+//            }
+//        }
+//    }
+
+    // 升级 gradle  3.0 - 4.1 ，outputFile报错，用如下
+//    applicationVariants.all { variant ->
+//        variant.outputs.all { output ->
+//            outputFileName = "Kingplug.apk"
+//        }
+//    }
+/*    task makeApp(type: Copy) {
+        dependsOn 'assembleRelease'
+        from('build/outputs/apk')
+        into('build/libs/')
+//        include('classes.jar')
+        rename ('.*?apk', 'test01.app')
+    }*/
+
+    /*
+        task makeJar(type: Copy) {
+        dependsOn 'assembleRelease'
+        from('build/intermediates/bundles/release/')
+        into('build/libs/')
+        include('classes.jar')
+        rename ('classes.jar', 'mysdk.jar')
+    }
+    */
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    testCompile 'junit:junit:4.12'
+}

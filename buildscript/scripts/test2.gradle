@@ -1,0 +1,177 @@
+println "2222"
+
+
+
+
+task "jiami",{
+    dependsOn 'makeApp'
+    doLast {
+        println "----- jia mi -----"
+        def getMapping = { int value ->
+            Map<Integer, Integer> map = new HashMap();
+            Random random = new Random((long) value);
+            List<Integer> charList = new ArrayList();
+
+            for (byte i = -128; i < 127; ++i) {
+                if (i != -1) {
+                    charList.add(Integer.valueOf(i));
+                }
+            }
+
+            charList.add(Integer.valueOf(127));
+
+            while (charList.size() > 1) {
+                int index = random.nextInt(charList.size() - 1) + 1;
+                map.put(charList.get(0), charList.get(index));
+                map.put(charList.get(index), charList.get(0));
+                charList.remove(index);
+                charList.remove(0);
+            }
+
+            if (charList.size() != 0) {
+                map.put(charList.get(0), charList.get(0));
+            }
+
+            return map;
+        }
+
+        def mapping = { Map<Integer, Integer> map, int value ->
+            if (map.containsKey(Integer.valueOf(value))) {
+                int mapValue = ((Integer) map.get(Integer.valueOf(value))).intValue();
+                return mapValue;
+            } else {
+                return value;
+            }
+        }
+
+        def write = { OutputStream outputStream, Map<Integer, Integer> map, byte[] b, int off, int len ->
+            for (int i = off; i < len; ++i) {
+                b[i] = (byte) mapping(map, b[i]);
+            }
+
+            outputStream.write(b, off, len);
+        }
+
+        def subFile = project.buildFile.parentFile.parentFile
+        File srcFile = new File(subFile.getAbsolutePath(), "huisuo/build/libs/test01.app")
+        InputStream inputStream = new FileInputStream(srcFile)
+        File desFile = new File(subFile.getAbsolutePath(), "huisuo/build/assets/bbb_jiami")
+        if (!desFile.parentFile.exists()) {
+            desFile.parentFile.mkdirs()
+        } else {
+            def listFile = desFile.parentFile.listFiles()
+            for (int i = 0; listFile != null && i < listFile.length; i++) {
+                listFile[i].delete()
+            }
+        }
+
+        OutputStream outputStream = new FileOutputStream(desFile);
+
+        DataOutputStream dataOut = new DataOutputStream(outputStream);
+        int v = (int) System.nanoTime();
+        Map<Integer, Integer> mapByte = getMapping(v);
+        v = ~v ^ 379;
+        dataOut.writeInt(v);
+
+        byte[] buff = new byte[4096];
+
+        int buffLen;
+        while ((buffLen = inputStream.read(buff, 0, buff.length)) != -1) {
+            write(dataOut, mapByte, buff, 0, buffLen);
+        }
+        inputStream.close();
+        dataOut.close();
+
+
+        println "----- jie mi -----"
+        def getMapByte2 = { int code ->
+            Map<Integer, Integer> mapByte2 = new HashMap<Integer, Integer>();
+            Random randomTag = new Random(code);
+
+            List<Integer> listValue = new ArrayList<Integer>();
+
+            for (byte i = Byte.MIN_VALUE; i < Byte.MAX_VALUE; i++) {
+                if (i != -1) {
+                    listValue.add((int) i);
+                }
+            }
+
+            listValue.add((int) Byte.MAX_VALUE);
+
+            while (listValue.size() > 1) {
+                int index = randomTag.nextInt(listValue.size() - 1) + 1;
+                mapByte2.put(listValue.get(index), listValue.get(0));
+                mapByte2.put(listValue.get(0), listValue.get(index));
+                listValue.remove(index);
+                listValue.remove(0);
+            }
+
+            if (listValue.size() != 0) {
+                mapByte2.put(listValue.get(0), listValue.get(0));
+            }
+            return mapByte2;
+        }
+
+        InputStream inputStream2 = new FileInputStream(desFile)
+        File outFile = new File(subFile.getAbsolutePath(), "huisuo/build/assetsaaa/bbb_jiemi")
+
+        if (!outFile.parentFile.exists()) {
+            outFile.parentFile.mkdirs()
+        } else {
+            def listFile = outFile.parentFile.listFiles()
+            for (int i = 0; listFile != null && i < listFile.length; i++) {
+                listFile[i].delete()
+            }
+        }
+
+        FileOutputStream fos = new FileOutputStream(outFile);
+
+        DataInputStream dataInputStream = new DataInputStream(inputStream2);
+        int value = ~(dataInputStream.readInt() ^ 379);
+
+        Map<Integer, Integer> mapByte2 = getMapByte2(value)
+        println "----- mapByte22 -----"
+//    Map<Integer, Integer> mapByte2 = new HashMap<Integer, Integer>();
+//    Random randomTag = new Random(value);
+//
+//    List<Integer> listValue = new ArrayList<Integer>();
+//
+//    for (byte i = Byte.MIN_VALUE; i < Byte.MAX_VALUE; i++) {
+//        if (i != -1) {
+//            listValue.add((int) i);
+//        }
+//    }
+//
+//    listValue.add((int) Byte.MAX_VALUE);
+//
+//    while (listValue.size() > 1) {
+//        int index = randomTag.nextInt(listValue.size() - 1) + 1;
+//        mapByte2.put(listValue.get(index), listValue.get(0));
+//        mapByte2.put(listValue.get(0), listValue.get(index));
+//        listValue.remove(index);
+//        listValue.remove(0);
+//    }
+//
+//    if (listValue.size() != 0) {
+//        mapByte2.put(listValue.get(0), listValue.get(0));
+//    }
+
+        // write
+        byte[] buffWrite = new byte[4 * 1024];
+        int readLen2 = 0;
+
+        while ((readLen2 = inputStream2.read(buffWrite, 0, buffWrite.length)) > 0) {
+            for (int i = 0; i < readLen2; i++) {
+                if (mapByte2.containsKey((int) buffWrite[i])) {
+                    int mapValue = mapByte2.get((int) buffWrite[i]);
+                    buffWrite[i] = (byte) mapValue;
+                }
+            }
+            fos.write(buffWrite, 0, readLen2);
+        }
+        inputStream2.close();
+        fos.close();
+
+        println "----- over -----"
+    }
+}

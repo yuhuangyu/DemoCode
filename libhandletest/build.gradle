@@ -1,0 +1,16 @@
+apply plugin: 'java'
+//jar包入口
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.example.MyClass'
+    }
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

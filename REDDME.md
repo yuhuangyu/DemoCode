@@ -5,3 +5,4 @@
 
 ###  ctrl shift a   可查询所有快捷键
 
+Translation  studio插件

@@ -13,6 +13,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -20,9 +22,11 @@ import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.test.markdemo.exercise.webviewtest.AdmobWebChromeClient;
 import com.test.markdemo.exercise.webviewtest.FloatWindow;
 import com.test.markdemo.exercise.webviewtest.WebManager;
 import com.test.markdemo.exercise.webviewtest.WebManager2;
+import com.test.markdemo.exercise.webviewtest.WebViewGetConsole;
 import com.test.markdemo.use.UtilsUse;
 import com.test.markdemo.utils.ActivityHooker;
 import com.test.markdemo.utils.Hooker;
@@ -52,7 +56,7 @@ public class MainActivity extends Activity {
 //        UtilsUse.JSUsed(this);
 
         // FloatWindow  -- WindowManager 添加view显示窗口工具
-        UtilsUse.showWindow(this);
+//        UtilsUse.showWindow(this);
 
         //替换本应用包名
 //        UtilsUse.changePakageName(MainActivity.this);
@@ -66,7 +70,7 @@ public class MainActivity extends Activity {
 //        });
 //        webView.loadUrl("https://www.baidu.com/");
 //        setContentView(webView);
-        new WebManager2(this,null).setup("http://www.baidu.com/");
+//        new WebManager2(this,null).setup("http://www.baidu.com/");
 
         //webview可在谷歌上调试
 //        _handler.post(new Runnable() {
@@ -75,6 +79,25 @@ public class MainActivity extends Activity {
 //                WebView.setWebContentsDebuggingEnabled(true); //todo
 //            }
 //        });
+
+
+        // webview 已经展示完成后，可用此方法 重写WebChromeClient注入js
+//        WebView webView = new WebView(this);
+        /*webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                Log.e("sdk","33====="+consoleMessage.toString());
+                if (consoleMessage != null && consoleMessage.message() != null) {
+                    if (consoleMessage.message().contains("point")) {
+//                                resultAdmob = consoleMessage.message();
+                        Log.e("sdk","33===== webView consoleMessage "+consoleMessage.message());
+                    }
+                }
+                return super.onConsoleMessage(consoleMessage);
+            }
+        });*/
+//        webView.loadUrl("http://yeah.qq.com/?q=hao");
+//        WebViewGetConsole.doWebview(webView);
 
     }
 

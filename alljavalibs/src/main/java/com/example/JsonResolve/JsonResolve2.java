@@ -55,14 +55,17 @@ public class JsonResolve2 {
     private int parseNum = 0;
     private Stack<Integer> objectOrArray = new Stack<>();  // 1 - object, 2 - Array
 
-
-    public Map<String,Object> getJsonObject(String json) throws Exception{
+    public JsonResolve2(String json) throws Exception {
         getTokens(json);
+    }
+
+    public Map<String,Object> getJsonObject() throws Exception{
         return parseJsonObject();
     }
 
 
-    // Resolve Object
+    //region Resolve Object
+
     private Map<String, Object> parseJsonObject() throws Exception {
         Map<String,Object> map = new HashMap<>();
         String key = null;
@@ -99,7 +102,7 @@ public class JsonResolve2 {
         }
         return map;
     }
-    // Resolve Array
+
     private List<Object> getArray() throws Exception {
         List<Object> list = new ArrayList<>();
         while (parseNum < tokens.size()){
@@ -134,7 +137,11 @@ public class JsonResolve2 {
         return list;
     }
 
-    // Resolve Tokens
+    //endregion Resolve Object
+
+
+    //region Resolve Tokens
+
     private void getTokens(String json) throws Exception {
 
         this.json = json;
@@ -165,7 +172,7 @@ public class JsonResolve2 {
         public Tokens(int type, Object value){
             this.type = type;
             this.value = value;
-            System.out.println("Tokens :  type "+type+" ,value "+value+"         valueFlag "+valueFlag);
+//            System.out.println("Tokens :  type "+type+" ,value "+value+"         valueFlag "+valueFlag);
         }
     }
 
@@ -425,7 +432,7 @@ public class JsonResolve2 {
                 valueFlag = true;
             }
         }else {
-            System.out.println("over ... ");
+//            System.out.println("over ... ");
         }
     }
 
@@ -435,4 +442,5 @@ public class JsonResolve2 {
         setNowValueState();
     }
 
+    //endregion Resolve Tokens
 }

@@ -17,7 +17,7 @@ public class JsonMain {
         String json6 = "[{\"aaa\" :  \"111\" ,\"bbb\" : 222  ,\"ccc\" :  33.33 },2000]";
 
         try {
-            Map<String,Object> jsonObject = new JsonResolve2().getJsonObject(json3);
+            Map<String,Object> jsonObject = new JsonResolve2(json3).getJsonObject();
             System.out.println("jsonObject "+jsonObject);
 
         } catch (Exception e) {

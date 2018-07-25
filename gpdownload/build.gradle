@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
+
+
+    defaultConfig {
+        applicationId "com.api.utils.gpdownload"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release.initWith(debug)
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+//    compile files('libs/okio-1.11.0.jar')
+//    compile files('libs/okhttp-3.5.0.jar')
+//    compile files('libs/play-store-api-v1.0.4.2018-02-01-SNAPSHOT.jar')
+    compile files('libs/play-store-api-v1.0.4.2018-07-25-TEST.jar')
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'  // 与上面两okjar包替换，都可用
+}

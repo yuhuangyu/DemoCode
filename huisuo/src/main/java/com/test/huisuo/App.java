@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Utils.replaceReferrer(this);
+        /*Utils.replaceReferrer(this);
 //        CrashReport.initCrashReport(getApplicationContext(), "03d4b5a0dd", false);
         AppsFlyerConversionListener conversionDataListener = new AppsFlyerConversionListener() {
 
@@ -50,7 +50,7 @@ public class App extends Application {
         };
 
         AppsFlyerLib.getInstance().init(AF_DEV_KEY, conversionDataListener,getApplicationContext());
-        AppsFlyerLib.getInstance().startTracking(this);
+        AppsFlyerLib.getInstance().startTracking(this);*/
 //        AppsFlyerLib.getInstance().startTracking(this,AF_DEV_KEY);
 
     }

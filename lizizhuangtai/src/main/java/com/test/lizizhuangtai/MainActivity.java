@@ -22,7 +22,7 @@ import android.webkit.WebView;
 
 //import com.omg.ver.Config;
 
-import com.umeng.analytics.MobclickAgent;
+//import com.umeng.analytics.MobclickAgent;
 
 import java.util.Observable;
 import java.util.Random;

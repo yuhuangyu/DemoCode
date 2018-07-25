@@ -23,7 +23,7 @@ public class SlideActivity  extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        slideview = findViewById(R.id.slideview);
+        /*slideview = findViewById(R.id.slideview);
 
 
         int limitMinX = 0;
@@ -48,7 +48,7 @@ public class SlideActivity  extends Activity {
             public void onDragEnd(int x, int y) {
                 slideview.layout(0,0,slideview.getWidth(),slideview.getHeight());
             }
-        });
+        });*/
 
     }
 

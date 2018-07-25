@@ -4,18 +4,13 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--    <com.test.huisuo.MView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/black"/>-->
-    <!--<TextView
+
+    <com.test.draglistView.DragListView
+        android:id="@+id/draglist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="asdf"/>-->
-    <com.test.lizizhuangtai.SlideView
-        android:id="@+id/slideview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="#0ff"
-        android:visibility="gone"/>
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0px"
+        android:listSelector="@android:color/transparent"/>
 </RelativeLayout>

@@ -22,8 +22,9 @@ public class myClass {
 
             int versionCode = session.getVersionCode(pkg);
             System.out.println("versionCode "+versionCode);
-            String[] downloadInfo = session.getDownloadInfo(pkg);
-            System.out.println("downloadInfo  "+downloadInfo);
+//            String[] downloadInfo = session.getDownloadInfo(pkg);
+            session.startDownload(pkg,new File("D:\\test", pkg+".apk"));
+//            System.out.println("downloadInfo  "+downloadInfo);
         } catch (Exception e) {
             e.printStackTrace();
 

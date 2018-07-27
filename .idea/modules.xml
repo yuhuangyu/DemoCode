@@ -8,8 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/gpdownload/gpdownload.iml" filepath="$PROJECT_DIR$/gpdownload/gpdownload.iml" />
       <module fileurl="file://$PROJECT_DIR$/huisuo/huisuo.iml" filepath="$PROJECT_DIR$/huisuo/huisuo.iml" />
+      <module fileurl="file://F:\mydemo\PluginInmobi\MarkDemo\libgpdownload\libTest.iml" filepath="F:\mydemo\PluginInmobi\MarkDemo\libgpdownload\libTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/libdesignpatterns/libdesignpatterns.iml" filepath="$PROJECT_DIR$/libdesignpatterns/libdesignpatterns.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libgpdownload/libTest.iml" filepath="$PROJECT_DIR$/libgpdownload/libTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libgpdownload/libgpdownload.iml" filepath="$PROJECT_DIR$/libgpdownload/libgpdownload.iml" />
       <module fileurl="file://$PROJECT_DIR$/libhandletest/libhandletest.iml" filepath="$PROJECT_DIR$/libhandletest/libhandletest.iml" />
       <module fileurl="file://$PROJECT_DIR$/lizizhuangtai/lizizhuangtai.iml" filepath="$PROJECT_DIR$/lizizhuangtai/lizizhuangtai.iml" />
     </modules>

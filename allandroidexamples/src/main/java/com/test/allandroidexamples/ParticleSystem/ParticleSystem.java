@@ -1,8 +1,7 @@
-package com.test.lizizhuangtai;
+package com.test.allandroidexamples.ParticleSystem;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;

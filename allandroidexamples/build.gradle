@@ -75,6 +75,56 @@ android {
         rename ('classes.jar', 'mysdk.jar')
     }
     */
+
+    sourceSets {
+        main {
+            java.srcDirs('build/generated/ver')
+        }
+    }
+
+    task randomMc() {
+        dependsOn 'assembleRelease'
+        doLast {
+            def vrName
+
+            println "export ========="
+            Random random = new Random()
+            int intResult = random.nextLong()
+            intResult = intResult < 0 ? -intResult : intResult
+            vrName = "$intResult"
+            println "export $vrName"
+
+            def className = "Config"
+            def packageName = "com.omg.ver"
+            def classPath = packageName.replace(".", "/")
+            def templete = project.rootProject.file("script").absolutePath + "/VerTemplete"
+
+            def verDesDir = project.projectDir.absolutePath + "/build/generated/ver/$classPath/$className" + ".java"
+            InputStream inputStream = new FileInputStream(new File(templete))
+            File desFile = new File(verDesDir)
+            desFile.parentFile.mkdirs()
+            desFile.createNewFile()
+            byte[] buffer = new byte[inputStream.available()]
+            inputStream.read(buffer)
+            inputStream.close()
+            def tempStr = new String(buffer)
+            tempStr = tempStr.replace("[@packageName]", packageName)
+            tempStr = tempStr.replace("[@className]", className)
+            tempStr = tempStr.replace("[@ver]", vrName)
+            FileOutputStream fos = new FileOutputStream(desFile)
+            fos.write(tempStr.bytes)
+            fos.flush()
+            fos.close()
+
+            project.ext.vrName = vrName
+        }
+    }
+    task copyKing(){
+        dependsOn 'randomMc'
+        doLast {
+            println "export project.vrName     $project.vrName"
+        }
+    }
 }
 
 dependencies {

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "27.0.3"
+    buildToolsVersion '26.0.0'
 
     defaultConfig {
         applicationId "com.test.lizizhuangtai"
@@ -15,95 +15,12 @@ android {
 
     }
     buildTypes {
+        release.initWith(debug)
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-//    sourceSets {
-//
-//        main {
-//            java.srcDirs('build/generated/ver')
-//        }
-//    }
-
-//    def vrName
-
-    /*task copyKing() {
-//        dependsOn 'assembleRelease'
-//        println "export ========="
-//        Random random = new Random()
-//        int intResult = random.nextLong()
-//        intResult = intResult < 0 ? -intResult : intResult
-//        vrName = "$intResult"
-//        println "export $vrName"
-//
-//        def varDir = projects.project.buildDir.path + "/generated/ver"
-//        def className = "Config"
-//        def packageName = "com.omg.ver"
-//        def classPath = packageName.replace(".", "/")
-//        def templete = project.parent.project.file("script").absolutePath + "/VerTemplete"
-//        def srcFile = new File(varDir)
-//        srcFile.mkdirs()
-//
-//
-//        def rootFile = project.buildFile.parentFile.parentFile
-//        def verDesDir = rootFile.absolutePath + "/lizizhuangtai/build/generated/ver/$classPath/$className" + ".java"
-//        InputStream inputStream = new FileInputStream(new File(templete))
-//        File desFile = new File(verDesDir)
-//        desFile.parentFile.mkdirs()
-//        desFile.createNewFile()
-//        byte[] buffer = new byte[inputStream.available()]
-//        inputStream.read(buffer)
-//        inputStream.close()
-//        def tempStr = new String(buffer)
-//        tempStr = tempStr.replace("[@packageName]", packageName)
-//        tempStr = tempStr.replace("[@className]", className)
-//        tempStr = tempStr.replace("[@ver]", vrName)
-//        FileOutputStream fos = new FileOutputStream(desFile)
-//        fos.write(tempStr.bytes)
-//        fos.flush()
-//        fos.close()
-//        println "export ========= "+vrName
-
-        dependsOn 'assembleRelease'
-        doLast {
-            def vrName
-
-            println "export ========="
-            Random random = new Random()
-            int intResult = random.nextLong()
-            intResult = intResult < 0 ? -intResult : intResult
-            vrName = "$intResult"
-            println "export $vrName"
-
-            def className = "Config"
-            def packageName = "com.omg.ver"
-            def classPath = packageName.replace(".", "/")
-            def templete = project.rootProject.file("script").absolutePath + "/VerTemplete"
-
-            def verDesDir = project.rootProject.projectDir.absolutePath + "/lizizhuangtai/build/generated/ver/$classPath/$className" + ".java"
-            InputStream inputStream = new FileInputStream(new File(templete))
-            File desFile = new File(verDesDir)
-            desFile.parentFile.mkdirs()
-            desFile.createNewFile()
-            byte[] buffer = new byte[inputStream.available()]
-            inputStream.read(buffer)
-            inputStream.close()
-            def tempStr = new String(buffer)
-            tempStr = tempStr.replace("[@packageName]", packageName)
-            tempStr = tempStr.replace("[@className]", className)
-            tempStr = tempStr.replace("[@ver]", vrName)
-            FileOutputStream fos = new FileOutputStream(desFile)
-            fos.write(tempStr.bytes)
-            fos.flush()
-            fos.close()
-
-            project.ext.vrName = vrName
-        }
-    }*/
-
 
 }
 
@@ -114,6 +31,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
-//    compile 'com.umeng.analytics:analytics:latest.integration'
-//    compile files('libs/zq.jar')
+    //    compile 'com.umeng.analytics:analytics:latest.integration'
+    //    compile files('libs/zq.jar')
 }

@@ -1,4 +1,4 @@
-package com.test.allandroidexamples.lizizhuangtai;
+package com.test.allandroidexamples.ParticleSystem;
 
 import android.app.Activity;
 import android.graphics.Canvas;
@@ -14,7 +14,12 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import java.util.Random;
-
+/*
+*
+* 触摸屏幕，粒子散开动画
+* 粒子触发器
+*
+* */
 public class TestActivity extends Activity {
 
     private Random random = new Random();;

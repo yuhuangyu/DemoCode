@@ -1,4 +1,4 @@
-package com.test.lizizhuangtai;
+package com.test.allandroidexamples.ParticleSystem;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

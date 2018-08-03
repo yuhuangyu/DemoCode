@@ -1,4 +1,4 @@
-package com.test.draglistView;
+package com.test.allandroidexamples.dragListViewGridView;
 
 import android.content.Context;
 import android.graphics.Bitmap;

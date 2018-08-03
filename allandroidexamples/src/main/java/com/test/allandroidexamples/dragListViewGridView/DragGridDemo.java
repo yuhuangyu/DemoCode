@@ -1,11 +1,12 @@
-package com.test.draglistView;
+package com.test.allandroidexamples.dragListViewGridView;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.test.lizizhuangtai.R;
+
+import com.test.allandroidexamples.R;
 
 import java.util.ArrayList;
 

@@ -7,7 +7,7 @@ import java.io.File;
 public class myClass {
     public static void main(String[] args) {
         // 谷歌下载 app
-        String pkg = "com.tunaikita.cashloan";
+        String pkg = "org.eobdfacile.android";
         MarketSession session = new MarketSession();
         session.setAndroidId("3eb3b995166f623f");
 //        session.setPoxyUrl("149.129.218.75");

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.omg.ver.Config;
+//import com.omg.ver.Config;
 
 
 /**
@@ -15,6 +15,7 @@ import com.omg.ver.Config;
  *
  * 在工程的java文件中可拿到定义的对象
  *
+ * 先编译 copyKing ，才可用，不然编译报错
  */
 
 public class NActivity extends Activity {
@@ -22,8 +23,8 @@ public class NActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String vrMachineName = Config.VrMachineName;
-        Log.e("sdk", "vrMachineName   "+vrMachineName);
+//        String vrMachineName = Config.VrMachineName;
+//        Log.e("sdk", "vrMachineName   "+vrMachineName);
     }
 
 }

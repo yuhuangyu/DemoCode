@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
  * Created by fj on 2018/7/27.
  */
 public class StorageTest {
-    @Test
+    /*@Test
     public void test() throws Storage.StorageException
     {
         Storage.Container container = Storage.builder("test", Storage.Object)
@@ -126,5 +126,5 @@ public class StorageTest {
             result = 31 * result + (isMan ? 1 : 0);
             return result;
         }
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.test.draglistView;
+package com.test.allandroidexamples.dragListViewGridView;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 
 
-import com.test.lizizhuangtai.R;
+import com.test.allandroidexamples.R;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class DragListViewDemo extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_list);
         init();
 
         mListView.setDragItemListener(new DragListView.SimpleAnimationDragItemListener() {

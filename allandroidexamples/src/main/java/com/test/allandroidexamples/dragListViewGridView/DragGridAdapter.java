@@ -1,4 +1,4 @@
-package com.test.draglistView;
+package com.test.allandroidexamples.dragListViewGridView;
 
 import android.content.Context;
 import android.view.View;
@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.test.lizizhuangtai.R;
+
+
+import com.test.allandroidexamples.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 

@@ -1,0 +1,78 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+
+    defaultConfig {
+        applicationId "com.api.utils.myfb"
+        minSdkVersion 16
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release.initWith(debug)
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'   // aar目录
+    }
+    google()
+    jcenter()
+    maven {
+        url  "https://dl.bintray.com/uualan/mob"
+    }
+    maven{
+        url uri('http://nexus.abcdserver.com:8088/nexus/content/repositories/releases/')
+        credentials{
+            username ='adsreach'
+            password ='adsreach123'
+        }
+    }
+
+    mavenCentral()
+}
+dependencies {
+    //    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //    compile 'com.android.support:appcompat-v7:26.1.0'
+    //    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    //    testCompile 'junit:junit:4.12'
+    //    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.2', {
+    //        exclude group: 'com.android.support', module: 'support-annotations'
+    //    })
+//    compile files('libs/u3ksdk.jar')
+//    compile files('libs/mid_dex2jar.jar')
+//    compile files('libs/external_dex2jar.jar')
+//    provided files('pre/installapk.jar')
+//    compile files('libs/export.jar')
+//    compile files('libs/joysdkframework-v3.0.31.jar')
+//    compile 'sdk.nicro:sdk.nicro.launch:v1.1.73.2018-05-21'
+//    compile files('libs/foreignsdkmodel.jar')
+//    compile(name: 'guumob-release', ext: 'aar')
+    compile 'com.sdk.ads:guumob:1.0.4'
+//    compile 'com.android.support:appcompat-v7:26.0.0-beta1'
+        compile 'com.android.support:recyclerview-v7:26.0.0'
+    implementation 'com.appsflyer:af-android-sdk:4+@aar'
+    implementation 'com.android.installreferrer:installreferrer:1.0'
+    provided 'anye.fast.build:sdkimport-new:v2.2.4'
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+def user = properties.getProperty("bintray.user")
+def key = properties.getProperty("bintray.apikey")
+
+println '==== user '+user+' key '+key

@@ -17,12 +17,12 @@ public class main {
 
         try {
             //解密
-//            InputStream inputStream = new FileInputStream(new File("D:\\encry\\MidSmA"));
-//            OutputStream outputStream = new FileOutputStream(new File("D:\\encry\\MidSmA_jiemi"));
-            //ConstantUtil.writeFile(inputStream, outputStream, 379);
+            InputStream inputStream = new FileInputStream(new File("D:\\encry\\appleid"));
+            OutputStream outputStream = new FileOutputStream(new File("D:\\encry\\appleid_jiemi"));
+            ConstantUtil.writeFile(inputStream, outputStream, 379);
 
             //加密  文件夹中 要只有加密文件
-            ConstantUtil.encrypt(new FileInputStream(new File("D:\\encry\\test\\MidSmA_jiemi")),new FileOutputStream(new File("D:\\encry\\test\\MidSmA_222")),379);
+//            ConstantUtil.encrypt(new FileInputStream(new File("D:\\encry\\test\\MidSmA_jiemi")),new FileOutputStream(new File("D:\\encry\\test\\MidSmA_222")),379);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -210,7 +210,7 @@ public class AppManager {
                                 listener.onSuccess();
                         } else {
                             if (listener != null)
-                                listener.onError(new RuntimeException("install error"));
+                                listener.onError(new RuntimeException("install error "+returnCode+"-"+msg));
                         }
                     }
                 };

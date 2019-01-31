@@ -1,0 +1,4 @@
+Log.Writer=File
+Log.FilterLevel=2
+Log.Format=${@level} : ${@msg}  $nowTime{}
+Log.FilePath=D:\\encry\\fileLog

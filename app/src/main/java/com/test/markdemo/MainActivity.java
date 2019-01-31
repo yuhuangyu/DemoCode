@@ -19,6 +19,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -46,7 +47,21 @@ public class MainActivity extends Activity {
 //        UtilsUse.setActivityVisible(MainActivity.this,this);
 
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
+
+        Button viewById = (Button) findViewById(R.id.bt);
+
+        viewById.measure( 0,  0);
+        int viewWidth = viewById.getMeasuredWidth();
+        int viewHeight = viewById.getMeasuredHeight();
+        Log.e("sdk","===== viewWidth "+viewWidth+"  viewHeight  "+viewHeight);
+        viewById.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("sdk","===== onClick ");
+            }
+        });
+        InputSimulator.clickRandom(viewById, 1, 1);
 
         // View与Activity对象的自动点击， 自动滑动
 //        UtilsUse.clickAndRoll(this, MainActivity.this);

@@ -6,8 +6,12 @@ jar {
     }
 }
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    compile files('libs/commons-codec-1.7.jar')
+
+
+    compile project(':AnnotationProcessor')
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"

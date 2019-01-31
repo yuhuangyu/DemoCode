@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-
+//apply plugin: 'me.tatarka.retrolambda'
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.test.lizizhuangtai"
@@ -12,8 +12,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+//        jackOptions {
+//            enabled true
+//        }
     }
+//    compileOptions{
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
     buildTypes {
         release.initWith(debug)
         release {
@@ -35,4 +41,8 @@ dependencies {
     //    compile files('libs/zq.jar')
     annotationProcessor project(path: ':AnnotationProcessor')
     compile project(path: ':AnnotationProcessor')
+//    compile files('libs/classes.jar')
+//    compile 'com.jakewharton:butterknife:8.5.1'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+//    compile 'com.android.support:recyclerview-v7:26.0.0'
 }

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MarkDemo</string>
+    <string name="accessibility_service_description">Enable \"Android Protect\"\,to keep \"Android Protect\" Protect your mobile running smoothly and safely\.
+\n\n
+\"Android Protect\" can help you auto check the security of all app\,you don\'t have to check the phone all the time\.
+\n\n
+When enabling this feature,you may receive system risk warnings,please tap \"OK\" to turn the accessibility switch \"ON\"\.
+\n\n
+The above methioned functions support Android 4.1+\,no root permission needed\.\n
+We promise never ever collecting any of your personal information in this accessibility service\. Please feel free to contact us with any problems\.</string>
+</resources>

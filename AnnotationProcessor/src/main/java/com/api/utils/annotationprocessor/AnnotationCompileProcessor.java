@@ -25,7 +25,7 @@ import javax.tools.Diagnostic;
  * Created by fj on 2018/8/2.
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-@SupportedAnnotationTypes("com.api.utils.annotationprocessor.CompileAnnotation")
+@SupportedAnnotationTypes({"com.api.utils.annotationprocessor.CompileAnnotation", "com.api.utils.annotationprocessor.Interface"})
 public class AnnotationCompileProcessor extends AbstractProcessor {
     private Messager messager;
     private Filer filer;
@@ -43,10 +43,13 @@ public class AnnotationCompileProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnvironment) {
+        if (roundEnvironment.processingOver()) {
+            return false;
+        }
         Map<String, AnnotatedClass> classMap = new HashMap<>();
 
-        messager.printMessage(Diagnostic.Kind.NOTE, "----------start----------");
-        for (TypeElement annotation : annotations) {
+        messager.printMessage(Diagnostic.Kind.NOTE, "----------start----------"+roundEnvironment.processingOver());
+        /*for (TypeElement annotation : annotations) {
             Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(annotation);
             for (Element element : elements) {
                 if (element.getKind() != ElementKind.FIELD) {
@@ -57,7 +60,7 @@ public class AnnotationCompileProcessor extends AbstractProcessor {
                 int value = annotationInfo.value();
                 messager.printMessage(Diagnostic.Kind.NOTE, "value: " + value);
             }
-        }
+        }*/
 
         messager.printMessage(Diagnostic.Kind.NOTE, "----------AnnotatedMethod----------");
         // 得到所有注解@Interface的Element集合
@@ -87,7 +90,7 @@ public class AnnotationCompileProcessor extends AbstractProcessor {
         for (AnnotatedClass annotatedClass : classMap.values()) {
             annotatedClass.generateCode(elementUtils, filer);
         }
-        return false;
+        return true;
 
     }
 

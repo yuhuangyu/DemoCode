@@ -1,21 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
    <TextView
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="aaa"
-       android:id="@+id/tv"/>
+       android:layout_height="100dp"
+       android:text="111"
+       android:textSize="50dp"
+       android:id="@+id/tv"
+       android:gravity="center"/>
+
+   <!--<TextView
+       android:layout_width="match_parent"
+       android:layout_height="100dp"
+       android:text="222"
+       android:textSize="50dp"
+       android:id="@+id/tv2"
+       android:gravity="center"/>
 
    <Button
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="停止"
+       android:text="点击"
        android:id="@+id/bbt"/>
 
+   <Button
+       android:id="@+id/bind_view1"
+       android:layout_centerHorizontal="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="click1"/>
 
-</RelativeLayout>
+   <Button
+       android:id="@+id/bind_view2"
+       android:layout_centerHorizontal="true"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="click2"/>
+
+   <EditText
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:hint="enter"
+       android:textColorHint="#ddd"
+       android:textSize="30dp"
+       android:gravity="center"
+       android:id="@+id/et"/>-->
+   <CalendarView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/calendar">
+
+   </CalendarView>
+
+</LinearLayout>

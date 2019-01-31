@@ -1,0 +1,6 @@
+Log.Writer=File
+Log.FilterLevel=2
+Log.Format=${@level} : ${@msg}  $nowTime{}
+Log.FilePath=D:\\encry\\fileLog
+bintray.user=uualan
+bintray.apikey=4143aaa0e4faefb731fe9ce6ae11df4b6f549a9c

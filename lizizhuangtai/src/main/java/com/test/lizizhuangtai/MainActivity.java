@@ -21,7 +21,8 @@ import java.io.IOException;
 
 public class MainActivity extends Activity {
     private Thread thread;
-    //    @CompileAnnotation(value = 200)
+
+//    @CompileAnnotation(value = 200)
 //    private TextView tv_text;
 
 
@@ -29,9 +30,9 @@ public class MainActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity);
+//        setContentView(R.layout.activity);
 //        tv_text = (TextView) findViewById(R.id.tv);
-        Button bbt = (Button)findViewById(R.id.bbt);
+        /*Button bbt = (Button)findViewById(R.id.bbt);
 
         //                    String s = RootCmd.execRootCmd("adb logcat -f /sdcard/test/log.txt");
 //                    Process process = Runtime.getRuntime().exec("adb logcat -f /sdcard/test/log.txt");
@@ -58,8 +59,15 @@ public class MainActivity extends Activity {
             }
         });
         Log.e("sdk","============222222222222");
-        Log.e("sdk","============333333333333");
+        Log.e("sdk","============333333333333");*/
 
+        /*Class<?> c = null;
+        try {
+            c = Class.forName("com.test.lizizhuangtai.ManInterface");
+            Log.e("sdk","============"+c.getName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }*/
         /*Class<?> c = null;
         try {
             c = Class.forName("com.test.lizizhuangtai.ManInterface");
@@ -81,14 +89,14 @@ public class MainActivity extends Activity {
         };
         manInterface.eat();*/
 
-        RootCmd.haveRoot();
-        RootCmd.getInfo();
+//        RootCmd.haveRoot();
+//        RootCmd.getInfo();
     }
-//    @Interface("ManInterface")
-//    public void eat() {
-//        System.out.println("Eat");
-//    }
-//
-//    @Interface("ManInterface")
-//    public void eat2() {}
+    @Interface("ManInterface")
+    public void eat() {
+        System.out.println("Eat");
+    }
+
+    @Interface("ManInterface")
+    public void eat2() {}
 }

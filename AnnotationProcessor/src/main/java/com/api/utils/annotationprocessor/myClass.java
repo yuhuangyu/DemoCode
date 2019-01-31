@@ -1,6 +1,7 @@
 package com.api.utils.annotationprocessor;
 
-//import sun.reflect.generics.tree.Tree;
+
+//import com.sun.source.tree.Tree;
 
 public class myClass {
     // JAVABEAN

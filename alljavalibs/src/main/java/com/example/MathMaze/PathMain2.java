@@ -7,6 +7,7 @@ import java.util.List;
 
 public class PathMain2
 {
+
     private final static char[][] map = new char[][]
             {
                     {'S', '*', '*', '*', '#', '*'},
@@ -15,18 +16,14 @@ public class PathMain2
                     {'#', '*', '#', '*', '*', '*'},
                     {'*', '*', '*', '*', '*', 'E'}
             };
-    private char[][] map2 = new char[][]
-            {
-                    {'S', '*', '*', '*', '#', '*'},
-                    {'#', '#', '#', '*', '*', '*'},
-                    {'*', '*', '*', '*', '#', '#'},
-                    {'#', '*', '#', '*', '*', '*'},
-                    {'*', '*', '*', '*', '*', 'E'}
-            };
+    private static int num = 0;
+
     public static void main(String[] args)
     {
 
         new PathMain2().backtrace(new Point(0,0));
+        System.out.println("================="+"   "+minListPoint.size()+" -- "+num);
+        printAllGoal(minListPoint);
     }
 
     public static class Point
@@ -48,21 +45,38 @@ public class PathMain2
     }
 
     private static Point[] Dir = new Point[]{new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1)};
-    private List<Point> listPoint = new ArrayList<>();
+    private static List<Point> listPoint = new ArrayList<>();
+    private static List<Point> minListPoint = new ArrayList<>();
+    private static int minSize = 0;
 
     public void backtrace(Point point){
-
-        if (isExcepetedGoal(point)) {
-            System.out.println("================="+"   "+listPoint.size());
-            printAllGoal();
+        if (minSize != 0 && listPoint.size() >= minSize) {
             return;
         }
+        if (isExcepetedGoal(point)) {
+            int size = listPoint.size();
+            if (minSize == 0) {
+                minSize = size;
+                minListPoint.clear();
+                minListPoint.addAll(listPoint);
+            }else if (minSize > size) {
+                minSize = size;
+                minListPoint.clear();
+                minListPoint.addAll(listPoint);
+            }
+            System.out.println("-- "+listPoint);
+
+            return;
+        }
+        num++;
         List<Point> nextGoal = findNextGoal(point);
-        for (Point i : nextGoal) {
-            handle(point);
-            mark(i);
-            backtrace(i);
-            unmark(i);
+        if (nextGoal != null) {
+            for (Point i : nextGoal) {
+                handle();
+                mark(i);
+                backtrace(i);
+                unmark(i);
+            }
         }
     }
 
@@ -75,7 +89,7 @@ public class PathMain2
         listPoint.add(point);
     }
 
-    private void handle(Point point) {
+    private void handle() {
 
     }
 
@@ -103,33 +117,23 @@ public class PathMain2
         return false;
     }
 
-    private void printAllGoal() {
-        System.out.println(listPoint);
-        for (Point p : listPoint)
+    private static void printAllGoal(List<Point> minListPoint) {
+        System.out.println(minListPoint);
+        for (Point p : minListPoint)
             if (p.x != 0 || p.y != 0)
-                map2[p.x][p.y] = '0';
+                map[p.x][p.y] = '0';
 
         for (int x = 0; x < 5; x++)
             for (int y = 0; y < 6; y++)
             {
-                System.out.print(map2[x][y]);
+                System.out.print(map[x][y]);
                 if (y == 5)
                     System.out.println();
             }
 
-        map2 = new char[][]
-                {
-                        {'S', '*', '*', '*', '#', '*'},
-                        {'#', '#', '#', '*', '*', '*'},
-                        {'*', '*', '*', '*', '#', '#'},
-                        {'#', '*', '#', '*', '*', '*'},
-                        {'*', '*', '*', '*', '*', 'E'}
-                };
     }
 
     private boolean isExcepetedGoal(Point point) {
-
         return map[point.x][point.y] == 'E';
-//        return "E".equals(map[point.x][point.y]+"");
     }
 }

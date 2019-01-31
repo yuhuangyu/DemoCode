@@ -8,7 +8,7 @@ public class MyClass {
         SubContext subContext = new SubContext();
         boolean booleen[] = {false,false,false,false,false};
         subContext.flag = booleen;
-        subContext.arr= new int[]{1,8,3,9,5};
+        subContext.arr= new int[]{1,8,9,9,5};
         subContext.arrNumm = new int[]{-1,-1,-1,-1,-1};
 
         new MyClass().backtrace(subContext,0);
@@ -21,9 +21,9 @@ public class MyClass {
         List<Integer> nextGoal = findNextGoal(context);
         for (int i : nextGoal) {
             handle(context,i,dp);
-            mark(context,i,dp);
+            mark(context,i);
             backtrace(context,dp+1);
-            unmark(context,i,dp);
+            unmark(context,i);
         }
     }
 
@@ -31,11 +31,11 @@ public class MyClass {
         context.arrNumm[dp] = i;
     }
 
-    private void unmark(SubContext context, int i, int dp) {
+    private void unmark(SubContext context, int i) {
         context.flag[i] = false;
     }
 
-    private void mark(SubContext context, int i, int dp) {
+    private void mark(SubContext context, int i) {
         context.flag[i] = true;
     }
 
@@ -59,7 +59,7 @@ public class MyClass {
     }
 
     public boolean isExcepetedGoal(SubContext context, int dp) {
-        return context.arr.length == dp && context.arr[context.arrNumm[0]]>-1;
+        return context.arr.length == dp && context.arr[context.arrNumm[0]]>2;
     }
 
     public static class SubContext {

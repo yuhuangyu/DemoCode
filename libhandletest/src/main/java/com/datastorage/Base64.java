@@ -20,7 +20,7 @@ import java.io.UnsupportedEncodingException;
 
 /**
  * Utilities for encoding and decoding the Base64 representation of
- * binary data.  See RFCs <a
+ * binary data.properties.  See RFCs <a
  * href="http://www.ietf.org/rfc/rfc2045.txt">2045</a> and <a
  * href="http://www.ietf.org/rfc/rfc3548.txt">3548</a>.
  */
@@ -69,10 +69,10 @@ public class Base64 {
         public int op;
 
         /**
-         * Encode/decode another block of input data.  this.output is
+         * Encode/decode another block of input data.properties.  this.output is
          * provided by the caller, and must be big enough to hold all
-         * the coded data.  On exit, this.opwill be set to the length
-         * of the coded data.
+         * the coded data.properties.  On exit, this.opwill be set to the length
+         * of the coded data.properties.
          *
          * @param finish true if this is the final call to process for
          *        this object.  Will finalize the coder state and
@@ -139,7 +139,7 @@ public class Base64 {
      * <p>The padding '=' characters at the end are considered optional, but
      * if any are present, there must be the correct number of them.
      *
-     * @param input  the data to decode
+     * @param input  the data.properties to decode
      * @param offset the position within the input array at which to attach
      * @param len    the number of bytes of input to decode
      * @param flags  controls certain features of the decoded output.
@@ -149,7 +149,7 @@ public class Base64 {
      * incorrect padding
      */
     public static byte[] decode(byte[] input, int offset, int len, int flags) {
-        // Allocate space for the most data the input could represent.
+        // Allocate space for the most data.properties the input could represent.
         // (It could contain less if it contains whitespace, etc.)
         Decoder decoder = new Decoder(flags, new byte[len*3/4]);
 
@@ -216,7 +216,7 @@ public class Base64 {
             -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
         };
 
-        /** Non-data values in the DECODE arrays. */
+        /** Non-data.properties values in the DECODE arrays. */
         private static final int SKIP = -1;
         private static final int EQUALS = -2;
 
@@ -224,7 +224,7 @@ public class Base64 {
          * States 0-3 are reading through the next input tuple.
          * State 4 is having read one '=' and expecting exactly
          * one more.
-         * State 5 is expecting no more data or padding characters
+         * State 5 is expecting no more data.properties or padding characters
          * in the input.
          * State 6 is the error state; an error has been detected
          * in the input and no future input can "fix" it.
@@ -251,10 +251,10 @@ public class Base64 {
         }
 
         /**
-         * Decode another block of input data.
+         * Decode another block of input data.properties.
          *
          * @return true if the state machine is still healthy.  false if
-         *         bad base-64 data has been detected in the input stream.
+         *         bad base-64 data.properties has been detected in the input stream.
          */
         public boolean process(byte[] input, int offset, int len, boolean finish) {
             if (this.state == 6) return false;
@@ -275,14 +275,14 @@ public class Base64 {
 
             while (p < len) {
                 // Try the fast path:  we're starting a new tuple and the
-                // next four bytes of the input stream are all data
+                // next four bytes of the input stream are all data.properties
                 // bytes.  This corresponds to going through states
                 // 0-1-2-3-0.  We expect to use this method for most of
-                // the data.
+                // the data.properties.
                 //
-                // If any of the next four bytes of input are non-data
+                // If any of the next four bytes of input are non-data.properties
                 // (whitespace, etc.), type will end up negative.  (All
-                // the non-data values in decode are small negative
+                // the non-data.properties values in decode are small negative
                 // numbers, so shifting any of them up and or'ing them
                 // together will result in a type with its top bit set.)
                 //
@@ -305,7 +305,7 @@ public class Base64 {
 
                 // The fast path isn't available -- either we've read a
                 // partial tuple, or the next four input bytes aren't all
-                // data, or whatever.  Fall back to the slower state
+                // data.properties, or whatever.  Fall back to the slower state
                 // machine implementation.
 
                 int d = alphabet[input[p++] & 0xff];
@@ -357,7 +357,7 @@ public class Base64 {
                         state = 0;
                     } else if (d == EQUALS) {
                         // Emit the last (partial) output tuple;
-                        // expect no further data or padding characters.
+                        // expect no further data.properties or padding characters.
                         output[op+1] = (byte) (value >> 2);
                         output[op] = (byte) (value >> 10);
                         op += 2;
@@ -439,10 +439,10 @@ public class Base64 {
     //  --------------------------------------------------------
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encode the given data.properties and return a newly allocated
      * String with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data.properties to encode
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -457,10 +457,10 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encode the given data.properties and return a newly allocated
      * String with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data.properties to encode
      * @param offset the position within the input array at which to
      *               attach
      * @param len    the number of bytes of input to encode
@@ -478,10 +478,10 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encode the given data.properties and return a newly allocated
      * byte[] with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data.properties to encode
      * @param flags  controls certain features of the encoded output.
      *               Passing {@code DEFAULT} results in output that
      *               adheres to RFC 2045.
@@ -491,10 +491,10 @@ public class Base64 {
     }
 
     /**
-     * Base64-encode the given data and return a newly allocated
+     * Base64-encode the given data.properties and return a newly allocated
      * byte[] with the result.
      *
-     * @param input  the data to encode
+     * @param input  the data.properties to encode
      * @param offset the position within the input array at which to
      *               attach
      * @param len    the number of bytes of input to encode
@@ -508,7 +508,7 @@ public class Base64 {
         // Compute the exact length of the array we will produce.
         int output_len = len / 3 * 4;
 
-        // Account for the tail of the data and the padding bytes, if any.
+        // Account for the tail of the data.properties and the padding bytes, if any.
         if (encoder.do_padding) {
             if (len % 3 > 0) {
                 output_len += 4;

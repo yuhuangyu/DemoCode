@@ -3,22 +3,44 @@
 buildscript {
     repositories {
         jcenter()
+        google()
+//        mavenCentral()
         maven {
             url 'https://maven.google.com/'
             name 'Google'
         }
+        /*maven{
+            url uri('http\\://nexus.abcdserver.com\\:8088/nexus/content/repositories/releases/')
+            credentials{
+                username ='adsreach'
+                password ='adsreach123'
+            }
+        }
+
+        maven{
+            url uri('http\\://nexus.abcdserver.com\\:8088/nexus/content/repositories/snapshots/')
+            credentials{
+                username ='adsreach'
+                password ='adsreach123'
+            }
+        }*/
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:3.0.0'
+//        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+//        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+//    configurations.classpath.exclude group: 'com.android.tools.external.lombok'
+
 }
 
 allprojects {
     repositories {
         jcenter()
+//        mavenCentral()
         maven {
             url "https://maven.google.com" // Google's Maven repository
         }

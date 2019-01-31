@@ -1,1 +1,1 @@
-include ':app', ':huisuo', ':lizizhuangtai', ':alljavalibs', ':allandroidexamples', ':libhandletest', ':libdesignpatterns', ':libgpdownload', ':gpdownload', ':AnnotationProcessor'
+include ':app', ':huisuo', ':lizizhuangtai', ':alljavalibs', ':allandroidexamples', ':libhandletest', ':libdesignpatterns', ':libgpdownload', ':gpdownload', ':AnnotationProcessor', ':myfb', ':dtest'
